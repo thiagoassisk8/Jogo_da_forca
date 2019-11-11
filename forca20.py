@@ -8,10 +8,10 @@ lista_erros = []
 
 
 def player():
-  player1 = input('Qual é o nome do primeiro jogador? \n ')
+  player1 = input('Olá qual é o seu nome jogador? \n ')
   time.sleep(1)
   print('SEJA BEM VINDO {} que comecem os jogos!'.format(player1))
-  print ('Start guessing...\n')
+  print ('...\n')
   time.sleep(0.5)
 player()
 
@@ -98,7 +98,7 @@ def main():
       print ('Voce tem mais {} palpites restantes \n'.format(turns))
       print('Letras já escolhidas: \n', lista_erros) 
     if turns == 0:           
-      print ("You Loose")
+      print ("PERDEUUUUUUUUUUUUUUUU")
       print('A palavra era {}'.format(word))
       
 main()
