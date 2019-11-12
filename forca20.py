@@ -1,9 +1,9 @@
 import time,getpass,random
 
 esportes = ['futebol','basquete','bola','chuteira','flamengo']
-filmes = ['IT a coisa','jogos mortais','sexta feira 13']
+filmes = ['it a coisa','jogos mortais','sexta feira 13']
 geral = ['futebol','basquete','bola','chuteira',
-'flamengo','IT a coisa','jogos mortais','sexta feira 13']
+'flamengo','it a coisa','jogos mortais','sexta feira 13']
 lista_erros = []
 
 
@@ -18,58 +18,58 @@ player()
 
 def main():
   guesses = 0
-  print('1 - Esportes \n')
-  print('2 - Filmes \n')
-  print('3 - Geral \n')
-  print('4 - SEJA O MESTRE \n')
-  ask = input('Escolha a categoria que você deseja jogar? \n')
+  ask = input('Escolha a categoria que você deseja jogar: \n\n'
+  '1 - Esportes \n\n' 
+  '2 - Filmes \n\n'
+  '3 - Geral \n\n'
+  '4 - SEJA O MESTRE\n')
   if ask == '1':
     word = random.choice(esportes)
     if word == 'futebol':
       print('Dica: É o esporte mais jogado do mundo')
-    if word == 'basquete':
+    elif word == 'basquete':
       print('Dica: Michael Jordan ficou muito conhecido jogando... ')
-    if word == 'bola':
+    elif word == 'bola':
       print('Dica: É Redondo')
-    if word == 'chuteira':
+    elif word == 'chuteira':
       print('Dica: É de calçar')
-    if word == 'flamengo':
+    elif word == 'flamengo':
       print('Dica: Time com a maior torcida do Brasil')
     
   elif ask == '2':
     word = random.choice(filmes)
     if word == 'IT a coisa':
       print('Dica: É um filme de palhaço')
-    if word == 'jogos mortais':
+    elif word == 'jogos mortais':
       print('Dica: O personagem Jig saw ficou muito conhecido nesse filme! ')
-    if word == 'sexta feira 13':
+    elif word == 'sexta feira 13':
       print('Dica: O personagem principal desse filme foi morto em um lago! ')
-    if word == 'chuteira':
+    elif word == 'chuteira':
       print('Dica: É de calçar')
     
   elif ask == '3':
     word = random.choice(geral)
     if word == 'futebol':
       print('Dica: É o esporte mais jogado do mundo')
-    if word == 'basquete':
+    elif word == 'basquete':
       print('Dica: Michael Jordan ficou muito conhecido jogando... ')
-    if word == 'bola':
+    elif word == 'bola':
       print('Dica: É Redondo')
-    if word == 'chuteira':
+    elif word == 'chuteira':
       print('Dica: É de calçar')
-    if word == 'flamengo':
+    elif word == 'flamengo':
       print('Dica: Time com a maior torcida do Brasil')
-    if word == 'IT a coisa':
+    elif word == 'IT a coisa':
       print('Dica: É um filme de palhaço')
-    if word == 'jogos mortais':
+    elif word == 'jogos mortais':
       print('Dica: O personagem Jig saw ficou muito conhecido nesse filme! ')
-    if word == 'sexta feira 13':
+    elif word == 'sexta feira 13':
       print('Dica: O personagem principal desse filme foi morto em um lago! ')
-    if word == 'chuteira':
+    elif word == 'chuteira':
       print('Dica: É de calçar')    
     
   elif ask == '4':
-    word = getpass.getpass('Digite uma palavra secreta para seu amigo tentar adivinhar \n')
+    word = getpass.getpass('Digite uma palavra secreta para seus amigos tentarem adivinhar \n')
    
   turns = 7
   guesses = ''
@@ -89,6 +89,7 @@ def main():
       break
 
     guess = input("Chute uma letra:") 
+    guess = guess.lower()
     guesses += guess[0]
           
     if guess not in word:  
