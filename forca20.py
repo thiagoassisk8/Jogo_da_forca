@@ -1,9 +1,9 @@
 import time,getpass,random
 
 esportes = ['futebol','basquete','bola','chuteira','flamengo']
-filmes = ['it a coisa','jogos mortais','sexta feira 13']
+filmes = ['Titanic','avatar','click']
 geral = ['futebol','basquete','bola','chuteira',
-'flamengo','it a coisa','jogos mortais','sexta feira 13']
+'flamengo','Titanic','avatar','click']
 lista_erros = []
 
 
@@ -38,12 +38,12 @@ def main():
     
   elif ask == '2':
     word = random.choice(filmes)
-    if word == 'IT a coisa':
-      print('Dica: É um filme de palhaço')
-    elif word == 'jogos mortais':
-      print('Dica: O personagem Jig saw ficou muito conhecido nesse filme! ')
-    elif word == 'sexta feira 13':
-      print('Dica: O personagem principal desse filme foi morto em um lago! ')
+    if word == 'Titanic':
+      print('Dica: O filme conta a história do romance entre um artista pobre e uma jovem rica')
+    elif word == 'avatar':
+      print('Dica: O filme foi lançado em 2009 e foi sucesso de bilheteria, dirigido por James Cameron ')
+    elif word == 'click':
+      print('O filme lançou em 2009 e teve como o protagonista, o ator Adam Sandler ')
     elif word == 'chuteira':
       print('Dica: É de calçar')
     
@@ -59,12 +59,12 @@ def main():
       print('Dica: É de calçar')
     elif word == 'flamengo':
       print('Dica: Time com a maior torcida do Brasil')
-    elif word == 'IT a coisa':
-      print('Dica: É um filme de palhaço')
-    elif word == 'jogos mortais':
-      print('Dica: O personagem Jig saw ficou muito conhecido nesse filme! ')
-    elif word == 'sexta feira 13':
-      print('Dica: O personagem principal desse filme foi morto em um lago! ')
+    elif word == 'Titanic':
+      print('Dica: O filme conta a história do romance entre um artista pobre e uma jovem rica')
+    elif word == 'avatar':
+      print('Dica: O filme foi lançado em 2009 e foi sucesso de bilheteria, dirigido por James Cameron ')
+    elif word == 'click':
+      print('O filme lançou em 2009 e teve como o protagonista, o ator Adam Sandler')
     elif word == 'chuteira':
       print('Dica: É de calçar')    
     
