@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Jogo da Forca</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <h1>Jogo da Forca</h1>
+    <h2>Escolha sua categoria: </h2>
+    <p>Chute uma letra!!</p>
+    <form id="hangman">
+      <input type="text" maxlength="1" minlength="1" name="letter" id="letter" placeholder="Guess a letter" />
+      <input id="guess" name="guess" type="submit" value="Guess" />
+      <button id="restart" name="restart" type="button">Restart</button>
+    </form>
+    <input class ="category"id="categoria" name="categorias" type="submit" value="Esportes" />
+    <input class ="category2"id="categoria2" name="categorias" type="submit" value="Filmes" />
+    <input class ="category3"id="categoria3" name="categorias" type="submit" value="Geral" />
+    <input class ="category4"id="mestre" name="categorias" type="password" placeholder="Seja o mestre" maxlength="40" minlength="1" />
+    <ul id="letters"></ul>
+    <p id="man"></p>
+    <p id="output" class="output"></p>
+    <script src="jogo_forca.js"></script>
+  </body>
+</html>
