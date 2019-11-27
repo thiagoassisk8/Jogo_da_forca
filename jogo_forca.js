@@ -1,57 +1,120 @@
+
 (function () {
   "use strict";
-  let availableLetters,geral, guessInput, 
-  guess, guessButton, lettersGuessed, lettersMatched,
-  output, man, letters, lives, currentWord, numLettersMatched, messages;
+
+  let letras_disponiveis  = "abcdefghijklmnopqrstuvwxyzçãé";
+  let  geral = ['futebol','basquete','bola','chuteira','flamengo','Titanic','avatar','click'];
+  let esportes = ['futebol','basquete','bola','chuteira','flamengo'];
+  let filmes   = ['Titanic','avatar','click'];
+  let vidas    = 7;
+  let mensagens = {
+    win: 'Você Venceu!',
+    lose: 'Fim de Jogo!',
+    guessed: ' você já tentou, tenta outra letra...',
+    validLetter: 'Faça seu palpite!'
+  };
+
+  let output          = document.getElementById("output");
+  let man             = document.getElementById("man");
+  let guessInput      = document.getElementById("letter");
+  let buttonEsportes  = document.getElementById("categoria");
+  let buttonFilmes    = document.getElementById("categoria2");
+  let buttonGeral     = document.getElementById("categoria3");
+  let mestreInput    = document.getElementById("mestre");
+  let guessButton     = document.getElementById("guess");
+  let letters         = document.getElementById("letters");
+  let buttonMestre     = document.getElementById("confirmacao");
+
+  let palavraUsuario, categoria, guess, lettersGuessed, lettersMatched, palavraSecreta, numLettersMatched;
 
   function setup() {
-      availableLetters = "abcdefghijklmnopqrstuvwxyzç";
-      lives = 7;
-      //esportes = ['futebol','basquete','bola','chuteira','flamengo'];
-      //filme = ['Titanic','avatar','click'];
-      geral = ['futebol','basquete','bola','chuteira','flamengo','Titanic','avatar','click'];
-      messages = {
-          win: 'You win!',
-          lose: 'Game over!',
-          guessed: ' você já tentou, tenta outra letra...',
-          validLetter: 'Faça seu palpite!'
-      };
-      //letras_usadas = [];
-
-      lettersGuessed = lettersMatched = '';
+      
+      lettersGuessed    = lettersMatched = '';
       numLettersMatched = 0;
+         
+      
+      buttonEsportes.onclick = function () {
+        categoria         = esportes;
+        palavraSecreta    = categoria[Math.floor(Math.random() * categoria.length)];
+        lettersGuessed    = lettersMatched = '';
+        numLettersMatched = 0;
+        //console.log(categoria)
+        return escolheCategoria(palavraSecreta)
+      };
 
-      currentWord = geral[Math.floor(Math.random() * geral.length)];
+      buttonMestre.onclick = function () {
+      palavraSecreta    = mestreInput.value;
+      categoria         = esportes;
+      lettersGuessed    = lettersMatched = '';
+      numLettersMatched = 0;
+        //console.log(categoria)
+        return escolheCategoria(palavraSecreta)
+      };
+      
+      buttonFilmes.onclick = function () {
+        categoria         = filmes;
+        palavraSecreta    = categoria[Math.floor(Math.random() * categoria.length)]; 
+        lettersGuessed    = lettersMatched = '';
+        numLettersMatched = 0;
+        console.log(categoria)
+        return escolheCategoria(palavraSecreta)
+      };
 
-      output = document.getElementById("output");
-      man = document.getElementById("man");
-      guessInput = document.getElementById("letter");
+      buttonGeral.onclick = function () {
+        categoria         = geral;
+        palavraSecreta    = categoria[Math.floor(Math.random() * categoria.length)];
+        lettersGuessed    = lettersMatched = '';
+        numLettersMatched = 0;
+        console.log(categoria)
+        return escolheCategoria(palavraSecreta)
+      };
+      
+      function escolheCategoria(palavraSecreta) {
+        
+        man.innerHTML     = 'Você tem ' + vidas + ' vidas sobrando';
+        output.innerHTML  = '';
+  
+        document.getElementById("letter").value = '';
+        
+        guessInput.style.display  = 'inline';
+        guessButton.style.display = 'inline';
+        
+        letters.innerHTML = '<li class="current-word">Palavra Secreta:</li>';
+        
+        let letter, i;
+        for (i = 0; i < palavraSecreta.length; i++) {
+          letter = '<li class="letter letter' + palavraSecreta.charAt(i).toUpperCase() + '">' + palavraSecreta.charAt(i).toUpperCase() + '</li>';
+          letters.insertAdjacentHTML('beforeend', letter);
+        }
+      }
 
-      man.innerHTML = 'Você tem ' + lives + ' vidas sobrando';
-      output.innerHTML = '';
-
+      categoria=geral;
+      palavraSecreta  = categoria[Math.floor(Math.random() * categoria.length)];
+  
+      man.innerHTML     = 'Você tem ' + vidas + ' vidas sobrando';
+      output.innerHTML  = '';
+  
       document.getElementById("letter").value = '';
-
-      guessButton = document.getElementById("guess");
+      
       guessInput.style.display = 'inline';
       guessButton.style.display = 'inline';
 
       letters = document.getElementById("letters");
-      letters.innerHTML = '<li class="current-word">Current word:</li>';
+      letters.innerHTML = '<li class="current-word">Palavra Secreta:</li>';
 
       let letter, i;
-      for (i = 0; i < currentWord.length; i++) {
-          letter = '<li class="letter letter' + currentWord.charAt(i).toUpperCase() + '">' + currentWord.charAt(i).toUpperCase() + '</li>';
-          letters.insertAdjacentHTML('beforeend', letter);
+      for (i = 0; i < palavraSecreta.length; i++) {
+        letter = '<li class="letter letter' + palavraSecreta.charAt(i).toUpperCase() + '">' + palavraSecreta.charAt(i).toUpperCase() + '</li>';
+        letters.insertAdjacentHTML('beforeend', letter);
       }
   }
 
   function gameOver(win) {
       if (win) {
-          output.innerHTML = messages.win;
+          output.innerHTML = mensagens.win;
           output.classList.add('win');
       } else {
-          output.innerHTML = messages.lose;
+          output.innerHTML = mensagens.lose;
           output.classList.add('error');
       }
 
@@ -73,42 +136,42 @@
     output.classList.remove('error', 'warning');
     guess = guessInput.value;
     if (guess) {
-      if (availableLetters.indexOf(guess) > -1) {
+      if (letras_disponiveis.indexOf(guess) > -1) {
         if ((lettersMatched && lettersMatched.indexOf(guess) > -1) || (lettersGuessed && lettersGuessed.indexOf(guess) > -1)) {
-            output.innerHTML = '"' + guess.toUpperCase() + '"' + messages.guessed;
+            output.innerHTML = '"' + guess.toUpperCase() + '"' + mensagens.guessed;
             output.classList.add("warning");
         }
-        else if (currentWord.indexOf(guess) > -1) {
+        else if (palavraSecreta.indexOf(guess) > -1) {
             let lettersToShow;
             lettersToShow = document.querySelectorAll(".letter" + guess.toUpperCase());
             for (let i = 0; i < lettersToShow.length; i++) {
               lettersToShow[i].classList.add("correct");
             }
-            for (let j = 0; j < currentWord.length; j++) {
-              if (currentWord.charAt(j) === guess) {
+            for (let j = 0; j < palavraSecreta.length; j++) {
+              if (palavraSecreta.charAt(j) === guess) {
                 numLettersMatched += 1;
                 }
             }
             lettersMatched += guess;
-            if (numLettersMatched === currentWord.length) {
+            if (numLettersMatched === palavraSecreta.length) {
               gameOver(true);
             }
         }
         else {
           lettersGuessed += guess;
-          lives--;
-          man.innerHTML = 'Você tem agora só mais ' + lives + ' vidas sobrando';
-          if (lives == 0) gameOver();
+          vidas--;
+          man.innerHTML = 'Você tem agora só mais ' + vidas + ' vidas sobrando';
+          if (vidas == 0) gameOver();
         }
       }
       else {
         output.classList.add('error');
-        output.innerHTML = messages.validLetter;
+        output.innerHTML = mensagens.validLetter;
       }
     }
     else {
       output.classList.add('error');
-      output.innerHTML = messages.validLetter;
+      output.innerHTML = mensagens.validLetter;
     }
     return false;
   };

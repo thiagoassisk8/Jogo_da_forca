@@ -52,7 +52,7 @@ h2{
    top:1%;
    left:10%;    
 }
-.category{
+#categoria{
     width: 200px;
     height:68px;
     position: absolute;
@@ -60,7 +60,7 @@ h2{
     left:12.5%;
            
 }
-.category2{
+#categoria2{
     width: 200px;
     height:68px;
     position: absolute;
@@ -68,7 +68,7 @@ h2{
     left:12.5%;        
 }
 
-.category3{ 
+#categoria3{ 
     width: 200px;
     height:68px;
     position: absolute;
@@ -76,10 +76,19 @@ h2{
     left:12.5%;        
 }
 
-.category4{
+#mestre{
     width: 200px;
     height:48px;
     position: absolute;
     top:42.4%;
     left:42.7%;
+}
+
+#confirmacao{
+    width: 90px;
+    height:50px;
+    position: absolute;
+    top:42.4%;
+    left:57.7%;
+        
 }

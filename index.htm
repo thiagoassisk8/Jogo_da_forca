@@ -11,14 +11,23 @@
     <h2>Escolha sua categoria: </h2>
     <p>Chute uma letra!!</p>
     <form id="hangman">
-      <input type="text" maxlength="1" minlength="1" name="letter" id="letter" placeholder="Guess a letter" />
+      <input type="text" maxlength="1" minlength="1" name="letter" id="letter" placeholder="Escolha sua letra" />
       <input id="guess" name="guess" type="submit" value="Guess" />
       <button id="restart" name="restart" type="button">Restart</button>
     </form>
-    <input class ="category"id="categoria" name="categorias" type="submit" value="Esportes" />
-    <input class ="category2"id="categoria2" name="categorias" type="submit" value="Filmes" />
-    <input class ="category3"id="categoria3" name="categorias" type="submit" value="Geral" />
-    <input class ="category4"id="mestre" name="categorias" type="password" placeholder="Seja o mestre" maxlength="40" minlength="1" />
+    <input class ="categoria" id="categoria" name="categoriaesporte" type="submit" value="esportes" />
+    <input class ="categoria" id="categoria2" name="categoriafilmes" type="submit" value="filmes" />
+    <input class ="categoria" id="categoria3" name="categoriageral" type="submit" value="geral" />
+    <input class= "categoria" id="confirmacao" name="confirmacao" type="submit" value="ok"/>
+    <input class ="categoria" 
+          id="mestre"
+          value = "" 
+          name="mestre"
+          type="password"
+          placeholder="Seja o mestre"
+          maxlength="40"
+          minlength="1"
+    />
     <ul id="letters"></ul>
     <p id="man"></p>
     <p id="output" class="output"></p>
