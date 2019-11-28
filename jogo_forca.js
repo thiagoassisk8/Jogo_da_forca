@@ -1,4 +1,4 @@
-
+//fonte:https://stackoverflow.com/questions/44229476/replacing-underscores-with-letters-of-corresponding-word-in-hangman-game-in-java
 (function () {
   "use strict";
 
