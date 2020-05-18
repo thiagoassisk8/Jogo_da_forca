@@ -1,4 +1,5 @@
 use db_empresa;
+
 -- 3.1 Operador null
 -- 1) Selecione o nome e o sobrenome dos funcionários que possuem gerente.
 select nome as 'Nome', sobrenome as 'Sobrenome', cargo as 'cargo' from tb_funcionarios_empresa
@@ -16,11 +17,15 @@ where departamento in (14,15) and salario * 5 >= 300000;
 select nome as 'Nome', cargo as 'cargo' from tb_funcionarios_empresa
 where nome between 'J' and 'Z' order by nome;
 
+-- 3) Selecione o funcionário e sua data de contratação. Classifique por data de contratação em ordem crescente. 
+-- Utilize o operador BETWEEN
+select nome as 'Nome', dt_contratacao as 'Data' from tb_funcionarios_empresa
+where dt_contratacao between '2010-02-05' and '2019-12-31' order by dt_contratacao asc;
+
 -- 3.1 Operador like
 -- 4) Faça uma lista mostrando todos os funcionários com o nome "João" junto com seus respectivos salários, de modo a mostrar seu nome composto
 	select nome as 'nome', sobrenome as 'sobrenome', salario as 'salario' from tb_funcionarios_empresa
-	 where nome like '%joão%' and salario > 12000
-     and departamento in (14,26);
+	 where nome like '%joão%' and salario > 12000;
 
 
 -- 3.1 Operador de concatenação
@@ -35,9 +40,9 @@ select * from tb_funcionarios_empresa
 where regexp_like(nome, '(C)') and dt_nascimento between '1987-01-01' and '1987-12-31';     
 
 -- 1.2) Selecione o nome do funcionário, a data de contratação e o sobrenome do funcionário que tenham
--- as letras 'C' e 'O' em qualquer posição do seu sobrenome. A letra 'A' deve vir antes da letra 'O'
-select nome, dt_contratacao, sobrenome from tb_funcionarios_empresa
-where regexp_like(sobrenome, '^.*c.*o.$'); 
+-- em seu nome as letras 'A' e 'O' em qualquer posição do seu sobrenome. A letra 'A' deve vir antes da letra 'O'
+select nome,sobrenome ,dt_contratacao from tb_funcionarios_empresa
+where regexp_like(nome, '^.*a.*o.$'); 
 
 -- 3.2 Funções String
 -- 1.1) Mostre o nome dos funcionários com a sua quantidade de letras e coloque em ordem alfabética.
@@ -54,15 +59,15 @@ select nome as 'nome',sobrenome as 'sobrenome', dt_nascimento as 'data'
 from tb_funcionarios_empresa
 where month(dt_nascimento) = month(curdate());
 
--- 1.2)Construa um relatório de todos os funcionários terceirizados  que fazem aniversário no segundo semestre do ano e seus respectivos cargos 
-	select nome as 'nome', dt_nascimento as ' data de nascimento', cargo as 'cargo' from tb_funcionarios_terceirizados
-	where month(dt_nascimento) in (7,8,9,10,11) 
-	order by month(dt_nascimento), day(dt_nascimento);
+-- 1.2)Construa um relatório de todos os funcionários terceirizados que fazem aniversário no segundo semestre do ano e seus respectivos cargos 
+select nome as 'nome', dt_nascimento as ' data de nascimento', cargo as 'cargo' from tb_funcionarios_terceirizados
+where month(dt_nascimento) in (7,8,9,10,11) 
+order by month(dt_nascimento), day(dt_nascimento);
 
 
 -- 3.2) Cáculo com data
 -- 1.1) Crie um relatório com o nome dos funcionários, a data de contratação de cada um e a data correspondente a três meses antes do funcionário ser contratado
-select nome as 'Nome', sobrenome as 'sobrenome',dt_contratacao as 'data de contratação', subdate(dt_contratacao, interval 3 month) as 'data de contratação'
+select nome as 'Nome', sobrenome as 'sobrenome',subdate(dt_contratacao, interval 3 month) as 'data de contratação'
 from tb_funcionarios_empresa;
 
 -- 1.2) Calcule o tempo em dias que cada funcionários está na empresa
@@ -78,6 +83,18 @@ select MIN(salario) from tb_funcionarios_terceirizados;
 select count(*) as 'quantidade de funcionários acima de 4000' from tb_funcionarios_terceirizados 
 where salario >= '4000';
 
+-- 3.2 Capsula de having
+-- 1.2 Mostre o cargo e o salário dos funcionários, porém somente daqueles que recebem menos que 80000
+select cargo as 'cargo', salario as 'salario'
+ FROM tb_funcionarios_empresa
+GROUP BY cargo
+HAVING salario < 80000;
+
+-- 1.2 Demonstre a identidade dos funcionários e o departamento, mas somente daqueles que recebem acima de 75.000.00
+select identidade as 'Id', departamento as 'Departamento', salario as 'salario'
+FROM tb_funcionarios_empresa
+GROUP BY identidade
+HAVING salario > 75000;
 
 -- 3.2 Inner Join
 
@@ -89,9 +106,9 @@ on fk_cod_empresa = cod_empresa;
 
 -- 1.2) Liste os funcionarios terceirizados junto com a empresa e o CNPJ vinculados aos mesmos
 select nome as 'nome do funcionario',
- cargo as 'cargo',
- nme_empresa as 'Empresa Contratante',
- cnpj as 'CNPJ da empresa'
+cargo as 'cargo',
+nme_empresa as 'Empresa Contratante',
+cnpj as 'CNPJ da empresa'
 from tb_funcionarios_terceirizados inner join tb_outras_empresas 
 on fk_cod_empresa = cod_empresa
 order by nome;
