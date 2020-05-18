@@ -65,6 +65,7 @@ where month(dt_nascimento) in (7,8,9,10,11)
 order by month(dt_nascimento), day(dt_nascimento);
 
 
+
 -- 3.2) Cáculo com data
 -- 1.1) Crie um relatório com o nome dos funcionários, a data de contratação de cada um e a data correspondente a três meses antes do funcionário ser contratado
 select nome as 'Nome', sobrenome as 'sobrenome',subdate(dt_contratacao, interval 3 month) as 'data de contratação'
@@ -75,26 +76,29 @@ select nome as 'Nome', dt_contratacao as 'Data', timestampdiff(day, dt_contratac
 from tb_funcionarios_empresa;
 
 -- 3.2 Funções de agregação 
--- 1.1) Qual o salário máximo e mínimo dos terceirizados
-select MAX(salario) from tb_funcionarios_terceirizados;
-select MIN(salario) from tb_funcionarios_terceirizados;
+-- 1.1 Mostre quem é o funcionário terceirizado mais velho.
+select nome as 'Funcionário mais velho', min(dt_nascimento) from  tb_funcionarios_terceirizados;
 
--- 1.2) Mostre a quantidade de funcionários terceirizads que recebem de 4000 em diante
+-- 1.2 Calcule a média salarial dos funcionários terceirizados.
+SELECT avg(salario) as 'média salarial dos tereceirizados' FROM tb_funcionarios_terceirizados;
+
+-- 1.3) Mostre a quantidade de funcionários terceirizads que recebem de 4000 em diante
 select count(*) as 'quantidade de funcionários acima de 4000' from tb_funcionarios_terceirizados 
 where salario >= '4000';
 
--- 3.2 Capsula de having
--- 1.2 Mostre o cargo e o salário dos funcionários, porém somente daqueles que recebem menos que 80000
+-- 3.2 Cláusula Having
+-- 1.1 Mostre o cargo e o salário dos funcionários da empresa, porém somente daqueles que recebem menos que 80000
 select cargo as 'cargo', salario as 'salario'
  FROM tb_funcionarios_empresa
 GROUP BY cargo
 HAVING salario < 80000;
 
--- 1.2 Demonstre a identidade dos funcionários e o departamento, mas somente daqueles que recebem acima de 75.000.00
-select identidade as 'Id', departamento as 'Departamento', salario as 'salario'
+-- 1.2 Utilizando a Cláusula Having liste todos os funcionários que nasceram entre 1999 e 2001.
+select  nome as 'nome', sobrenome as 'sobrenome' , dt_nascimento as 'data de nascimento'
 FROM tb_funcionarios_empresa
-GROUP BY identidade
-HAVING salario > 75000;
+group by  dt_nascimento
+HAVING  dt_nascimento BETWEEN '1999-01-01' AND '2001-01-01'
+order by dt_nascimento;
 
 -- 3.2 Inner Join
 
@@ -112,3 +116,4 @@ cnpj as 'CNPJ da empresa'
 from tb_funcionarios_terceirizados inner join tb_outras_empresas 
 on fk_cod_empresa = cod_empresa
 order by nome;
+
