@@ -1,20 +1,20 @@
 use db_empresa;
 -- 3.1 Operador null
--- 1) Selecione o nome e o sobrenome dos funcionários que não possuem gerente.
+-- 1) Selecione o nome e o sobrenome dos funcionários que possuem gerente.
 select nome as 'Nome', sobrenome as 'Sobrenome', cargo as 'cargo' from tb_funcionarios_empresa
-where cod_gerente is null;
+where cod_gerente is not null;
 
 -- 3.1 Operador in
--- 2) Selecione a identidade, o nome, o cargo, o salário e o código do departamento dos funcionários do departamento 14 e 15 
--- ou dos funcionários do departamento 41. Desses funcionários dos dois departamentos, mostre apenas os que ganham mais que R$ 2400,00.
-select identidade as 'id',nome as 'nome',cargo as 'cargo', salario as 'salário', departamento as 'Departamento' from tb_funcionarios_empresa
-where departamento in (14,15) and salario > 10000;
+-- 2) Selecione o nome e o cargo dos funcionários dos departamento 14 e 15 
+-- que ganham mais que R$ 300000 em um periodo de 5 meses
+select nome as 'nome',cargo as 'cargo', salario as 'salário', departamento as 'Departamento' from tb_funcionarios_empresa
+where departamento in (14,15) and salario * 5 >= 300000;
 
 -- 3.1 Operador between
--- 3) Selecione o funcionário, o seu cargo e sua data de contratação. Classifique por data de contratação em ordem crescente. 
+-- 3) Selecione os funcionários de nomes 'J' a 'Z'. Classifique os junto com o cargo. 
 -- Utilize o operador BETWEEN
-select nome as 'Nome', cargo as 'cargo', dt_contratacao as 'Data' from tb_funcionarios_empresa
-where dt_contratacao between '2010-02-05' and '2019-12-31' order by dt_contratacao asc;
+select nome as 'Nome', cargo as 'cargo' from tb_funcionarios_empresa
+where nome between 'J' and 'Z' order by nome;
 
 -- 3.1 Operador like
 -- 4) Faça um relatorio mostrando todos os funcionários com o nome "João" nos departamentos 14 e 26, junto com seus respectivos salários
