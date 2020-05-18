@@ -17,8 +17,8 @@ select nome as 'Nome', cargo as 'cargo' from tb_funcionarios_empresa
 where nome between 'J' and 'Z' order by nome;
 
 -- 3.1 Operador like
--- 4) Faça um relatorio mostrando todos os funcionários com o nome "João" nos departamentos 14 e 26, junto com seus respectivos salários
-	select nome as 'nome', cargo as 'cargo', salario as 'salario', departamento as 'Departamento' from tb_funcionarios_empresa
+-- 4) Faça uma lista mostrando todos os funcionários com o nome "João" junto com seus respectivos salários, de modo a mostrar seu nome composto
+	select nome as 'nome', sobrenome as 'sobrenome', salario as 'salario' from tb_funcionarios_empresa
 	 where nome like '%joão%' and salario > 12000
      and departamento in (14,26);
 
@@ -35,9 +35,9 @@ select * from tb_funcionarios_empresa
 where regexp_like(nome, '(C)') and dt_nascimento between '1987-01-01' and '1987-12-31';     
 
 -- 1.2) Selecione o nome do funcionário, a data de contratação e o sobrenome do funcionário que tenham
--- as letras 'A' e 'O' em qualquer posição do seu sobrenome. A letra 'A' deve vir antes da letra 'O'
+-- as letras 'C' e 'O' em qualquer posição do seu sobrenome. A letra 'A' deve vir antes da letra 'O'
 select nome, dt_contratacao, sobrenome from tb_funcionarios_empresa
-where regexp_like(sobrenome, '^.*a.*o.$'); 
+where regexp_like(sobrenome, '^.*c.*o.$'); 
 
 -- 3.2 Funções String
 -- 1.1) Mostre o nome dos funcionários com a sua quantidade de letras e coloque em ordem alfabética.
@@ -74,7 +74,7 @@ from tb_funcionarios_empresa;
 select MAX(salario) from tb_funcionarios_terceirizados;
 select MIN(salario) from tb_funcionarios_terceirizados;
 
--- 1.2) Mostre a quantidade, o nome e o cargo  dos funcionários terceirizads que recebem de 4000 em diante
+-- 1.2) Mostre a quantidade de funcionários terceirizads que recebem de 4000 em diante
 select count(*) as 'quantidade de funcionários acima de 4000' from tb_funcionarios_terceirizados 
 where salario >= '4000';
 
