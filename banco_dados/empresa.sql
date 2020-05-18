@@ -2,7 +2,7 @@ create database db_empresa;
 use db_empresa;
 drop table tb_funcionarios_empresa;
 drop table tb_funcionarios_terceirizados;
-
+drop table tb_outras_empresas;
 
 -- Empresa: 
 create table if not exists tb_funcionarios_empresa (
@@ -15,8 +15,8 @@ create table if not exists tb_funcionarios_empresa (
     cod_gerente int,
     cargo varchar(15) not null,
     departamento int not null,
-    salario double,
-    codigo_func_terce int
+    salario double
+    
     
 );
 
