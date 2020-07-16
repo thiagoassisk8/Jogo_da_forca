@@ -115,3 +115,24 @@ color:white;
   left: 645px;
   top: 32px;
 }
+#letrasErradas{
+  position: relative;
+  left: 587px;
+  top:-410px;
+/*   border:1.7px solid #142e21; */
+  font-family:whatever it takes;
+  font-weight:bold;
+  font-size:25.3px;
+/*   background-color: #274e3c; */
+  color: white;
+  padding:2.8px 25px;  
+}
+.NotIn{
+  position: relative;
+  left: 209px;
+  top:-76px;
+   display: inline-block;
+  font-size: 45px;
+  color:yellow;
+  margin: 2.5px;
+}
