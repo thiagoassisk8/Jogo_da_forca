@@ -14,6 +14,7 @@ secretword = categoriaSorteada[Math.floor(Math.random() * categoriaSorteada.leng
 function barrinha(){
   let quant = secretword.length;
   let barrinhas = ({ toString: () => " _ ",repeat: String.prototype.repeat}).repeat(quant);//converte a qntd de letras em "_"
+  document.getElementById("palavraSecreta").value=secretword
   document.getElementById("palavraSecreta").innerHTML=barrinhas
 }
 
@@ -76,13 +77,13 @@ function funcao_ok(){
   let wrongletters = document.createElement("li");
   wrongletters.className = "NotIn"
   console.log(secretword);
+  
   for(let i=0; i < secretword.length;i++ ){
     if(letter == secretword[i]){    
-     console.log("letra certa",i)
-     console.log("letra certa",secretword[i])
-     
-     
-     
+     console.log("posição letra",i);
+     console.log("letra",secretword[i]);
+     console.log(document.getElementById("palavraSecreta").value);
+     document.getElementById("letter")
      
       
    }
