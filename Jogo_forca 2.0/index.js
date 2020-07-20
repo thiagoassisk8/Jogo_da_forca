@@ -12,10 +12,11 @@ secretword = categoriaSorteada[Math.floor(Math.random() * categoriaSorteada.leng
 //secretword = "";
 
 function barrinha(){
-  let quant = secretword.length;
-  let barrinhas = ({ toString: () => " _ ",repeat: String.prototype.repeat}).repeat(quant);//converte a qntd de letras em "_"
+  var quant = secretword.length;
+  var barrinha = " _ ";
+  var barrinhas = ({ toString: () => barrinha,repeat: String.prototype.repeat}).repeat(quant);//converte a qntd de letras em "_"
   document.getElementById("palavraSecreta").value=secretword
-  document.getElementById("palavraSecreta").innerHTML=barrinhas
+  document.getElementById("palavraSecreta").innerHTML=barrinhas  
 }
 
 function del_ltrs_digitds(){
