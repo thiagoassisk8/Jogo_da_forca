@@ -25,14 +25,20 @@
         <button id="bt_ok" class="bt_guess" onclick="funcao_ok()">Ok</button>
         <button id="bt_restart" class="bt_guess" onclick="funcao_restart()">Restart</button>
     </div>
-    <label id= "palavraSecreta" value="" >_ _ _ _ _ _ _ _</label>
+    <ul id= "palavraSecreta" value="">
+    
+    </ul>
     
     <button id="bt_dica" class="bt_guess" onclick="funcao_dica()">Dica</button>
+    <p id="dica"></p>
+    
     
         <form id="letrasErradas">
             <h3>Letras erradas já digitadas:</h3>
+            <h3>Vidas: </h3>
+            <p id="Vidas">5</p>
         <ul id="erradasletras">        
-            <li class="NotIn"></li>            
+            <li class="NotIn" ></li>            
         </ul>
         </form>
     

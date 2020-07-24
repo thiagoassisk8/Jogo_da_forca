@@ -1,58 +1,65 @@
-let esportes = ["futebol","skate","basquete","natação"];
-let youtubers = ["Felipe Neto","Lucas Lira", "Cocielo","Cauê Moura","PC Siqueira"];
-let animais = ["Cachorro","Leão","Urso"];
-let objetos = ["Mesa","celular","peruca"];
-//let wrongletters = [];
+var esportes = ["FUTEBOL","SKATE","BASQUETE","NATAÇÃO"];
+var youtubers = ["FELIPE NETO","LUCAS LIRA", "COCIELO","CAUE MOURA","PC SIQUEIRA"];
+var animais = ["CACHORRO","LEÃO","URSO"];
+var objetos = ["MESA","CELULAR","PERUCA"];
+//var wrongletters = [];
 
 //Soreteio da categoria/palavra secreta
-let categorias = [esportes,youtubers,animais,objetos];
+var categorias = [esportes,youtubers,animais,objetos];
 categoriaSorteada = categorias[Math.floor(Math.random() * categorias.length)];
 
 secretword = categoriaSorteada[Math.floor(Math.random() * categoriaSorteada.length)];
 //secretword = "";
 
 function barrinha(){
-  var quant = secretword.length;
-  var barrinha = " _ ";
-  var barrinhas = ({ toString: () => barrinha,repeat: String.prototype.repeat}).repeat(quant);//converte a qntd de letras em "_"
-  document.getElementById("palavraSecreta").value=secretword
-  document.getElementById("palavraSecreta").innerHTML=barrinhas  
+  for(x= 0; x < secretword.length; x++){
+    var letracerta = secretword[x];
+    var ul = document.getElementById("palavraSecreta");
+    var li = document.createElement("li");
+    li.className = "In"
+    li.appendChild(document.createTextNode("_"));
+    li.setAttribute('data-letter',letracerta);
+    ul.append(li)
+    
+  }
+
 }
 
 function del_ltrs_digitds(){
-  let wrongletters = document.getElementById("erradasletras");
+  var wrongletters = document.getElementById("erradasletras");
   while (wrongletters.hasChildNodes()){
     wrongletters.removeChild(wrongletters.firstChild);
   }
-  //barrinha();
+  var palavra_escondida = document.getElementById("palavraSecreta");
+  while(palavra_escondida.hasChildNodes()){
+    palavra_escondida.removeChild(palavra_escondida.firstChild)
+  }
+  barrinha();
 }
 
 //Menu principal
 function funcao_esportes(){
-  window.secretword = esportes[Math.floor(Math.random() * esportes.length)];
+  secretword = esportes[Math.floor(Math.random() * esportes.length)];
   barrinha()  
-  document.getElementById("palavraSecreta").value=window.secretword;
   del_ltrs_digitds()
 }
 
 function funcao_youtubers(){
-  window.secretword = youtubers[Math.floor(Math.random()*youtubers.length)]
+  secretword = youtubers[Math.floor(Math.random()*youtubers.length)]
   barrinha()
-  document.getElementById("palavraSecreta").value=window.secretword;
   del_ltrs_digitds()
   return secretword;
   
 }
 
 function funcao_animais(){
-  window.secretword = animais[Math.floor(Math.random()*animais.length)]
+  secretword = animais[Math.floor(Math.random()*animais.length)]
   barrinha()
-  document.getElementById("bt_animais").value = secretword;
   del_ltrs_digitds()
   return secretword;
 }
 function funcao_objetos(){
-  window.secretword = objetos[Math.floor(Math.random()*objetos.length)]
+  secretword = objetos[Math.floor(Math.random()*objetos.length)]
   barrinha()
   document.getElementById("bt_objetos").value = secretword; 
   del_ltrs_digitds()
@@ -61,70 +68,81 @@ function funcao_objetos(){
 
 //Letra (input/usuário)
 function funcao_letra(){
-  //let letter = document.getElementById("letra").value;
-  //console.log("funcionou", letter)
-  //letter.addEventListener("Keyup",function(event){
-    //if(event.Keycode == 13){
-    //  event.preventDefault();
-    //  document.getElementById("bt_ok").click();
-    //}
-  //});
+  
+}
+function victoria(){
+  if(document.getElementsByClassName("In").innerHTML =!"_"){
+    
+
+  }
 
 }
   
 function funcao_ok(){  
-  let letter = document.getElementById("letra").value;
-  let t = document.createTextNode(letter);
-  let wrongletters = document.createElement("li");
+  //barrinha()
+  var letter_input = document.getElementById("letra").value.toUpperCase();
+  var t = document.createTextNode(letter_input);
+  var wrongletters = document.createElement("li");
   wrongletters.className = "NotIn"
   console.log(secretword);
-  
-  for(let i=0; i < secretword.length;i++ ){
-    if(letter == secretword[i]){    
-     console.log("posição letra",i);
-     console.log("letra",secretword[i]);
-     console.log(document.getElementById("palavraSecreta").value);
-     document.getElementById("letter")
-     
-      
-   }
-   else if (letter != secretword[i]) {
 
+  
+
+  var secretword = document.getElementsByClassName("In");
+  for(var i=0; i < secretword.length;i++ ){
+    //console.log(i);
+    var secretletter = document.getElementsByClassName("In")[i].getAttributeNode("data-letter").value
+    if(letter_input === secretletter){
+      console.log("letra secreta",secretletter);
+      var enderecoLetra = document.getElementsByClassName("In")[i];
+      enderecoLetra.innerHTML=secretletter;
+      
+     
+    }
+   
+   else if(letter_input !=secretletter) {
     wrongletters.append(t);
     document.getElementById("erradasletras").appendChild(wrongletters);
       
 
      }
+    else{
+      //victoria()
+      
+    }
     //console.log("letra errada",letter);
     //console.log("valor de i:",secretword[i])
-    else {
-     
-   }{              
      //wrongletter=document.createElement("NotIn")
      //document.getElementById("letrasErradas").appendChild(wrongletter);                          
 
-    }    
+        
   }
 }
 
 function funcao_restart(){
-  
+  barrinha()
+  del_ltrs_digitds()
   console.log("restart");
 
 }
-//",,,
+
 function funcao_dica(){
-  if (secretword =="futebol"){
-    
+var enderecoDica = document.getElementById("dica")
+  if (secretword =="FUTEBOL"){
+    enderecoDica.style.display = "inline"; 
+    enderecoDica.innerHTML ="Esporte mais Jogado do mundo"
   }
-  if(secretword == "skate"){
-
+  if(secretword == "SKATE"){
+    enderecoDica.style.display = "inline"; 
+    enderecoDica.innerHTML ="É o esporte favorito do cara que programou esse jogo sauhsauh";
   }
-  if(secretword =="basquete"){
-    
+  if(secretword =="BASQUETE"){
+    enderecoDica.style.display = "inline"; 
+    enderecoDica.innerHTML ="Esse esporte foi inventado em 1981";
   }
-  if(secretword=="natação"){
-
+  if(secretword=="NATAÇÃO"){
+    enderecoDica.style.display = "inline"; 
+    enderecoDica.innerHTML ="O objetivo do esporte é determinar qual é o nadador mais rápido em uma determinada distância";
   }
 
 }

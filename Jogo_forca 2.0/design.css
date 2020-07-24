@@ -105,7 +105,7 @@ color:white;
   position: relative;
   font-family:rudiment;
   color:white;  
-/*   display: inline; */
+  display: inline; 
   font-size: 75px;
   left: 620px;
   top:-30px;  
@@ -127,12 +127,37 @@ color:white;
   color: white;
   padding:2.8px 25px;  
 }
+#Vidas{
+  position: relative;
+  color: yellow;
+  left: 70px;
+  top:-90px;
+  font-size: 45px;
+}
 .NotIn{
   position: relative;
-  left: 209px;
-  top:-76px;
+  left: 201px;
+  top:-253px;
    display: inline-block;
   font-size: 45px;
   color:yellow;
   margin: 2.5px;
+}
+.In{
+  position: relative;
+  left: 22px;
+  top:0px;
+   display: inline-block;
+  font-size: 45px;
+  color:#fff;
+  margin: 2.5px;
+}
+#dica{
+  display: none; 
+  position: relative;
+ font-family:rudiment;
+ color:white;  
+ font-size: 40px;
+ left: 310px;
+ top:110px;  
 }
